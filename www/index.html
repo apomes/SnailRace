@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snail Race Game</title>
+    <style>
+        #snail-race {
+            position: relative;
+            width: 80%;
+            height: 150px;
+            background-color: #eee;
+            margin: 20px auto;
+        }
+        .snail {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+        }
+        #snail1 { top: 20px; }
+        #snail2 { top: 70px; }
+
+        /* Flag positioning */
+        .goal-flag {
+            position: absolute;
+            font-size: 2rem; /* Make flag large */
+            right: 10px;
+        }
+        #flag1 { top: 20px; } /* Align with snail1 track */
+        #flag2 { top: 70px; } /* Align with snail2 track */
+
+        /* Hide sections initially */
+        #create-game-section, #join-game-section, #game-area {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Snail Race Game</h1>
+
+    <!-- Main Menu for new and joining games -->
+    <div id="main-menu">
+        <button id="create-game-btn">Create a Game</button>
+        <button id="join-game-btn">Join a Game</button>
+    </div>
+
+    <!-- Create Game Section for Player 1 -->
+    <div id="create-game-section">
+        <h2>Create a Game</h2>
+        <input type="text" id="player-name" placeholder="Enter your name">
+        <input type="number" id="num-questions" placeholder="Number of questions">
+        <button id="create-game">Create Game</button>
+        <p id="game-code-display"></p>
+    </div>
+
+    <!-- Join Game Section for Player 2 -->
+    <div id="join-game-section">
+        <h2>Join a Game</h2>
+        <input type="text" id="game-code" placeholder="Enter game code">
+        <input type="text" id="player-name-join" placeholder="Enter your name">
+        <button id="join-game">Join Game</button>
+        <p id="join-game-error" style="color:red;"></p>
+    </div>
+
+    <!-- Game Area (Questions and Snails) -->
+    <div id="game-area">
+        <h3>Players:</h3>
+        <p id="player1-name"></p>
+        <p id="player2-name"></p>
+
+        <!-- Snail race track -->
+        <div id="snail-race">
+            <img id="snail1" class="snail" src="snail1.png" alt="Snail 1">
+            <img id="snail2" class="snail" src="snail2.png" alt="Snail 2">
+            <!-- Add goal flags -->
+            <div id="flag1" class="goal-flag">🏁</div>
+            <div id="flag2" class="goal-flag">🏁</div>
+        </div>
+
+        <!-- Question area -->
+        <div id="question-area">
+            <p id="question"></p>
+            <div id="answers"></div>
+        </div>
+
+        <!-- Result area -->
+        <p id="result"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
