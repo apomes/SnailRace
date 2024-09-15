@@ -80,12 +80,13 @@ socket.onmessage = function (event) {
         updateSnailPosition(data.player, data.progress);
     }
 
-    // Handle game over, show the winner
-    if (data.type === 'gameOver') {
+	// Handle game over, show the winner and trigger confetti
+	if (data.type === 'gameOver') {
         const winner = data.winnerName ? data.winnerName : "Nobody";  // Fallback in case of undefined
-        document.getElementById('result').innerText = `${winner} wins!`;
+        document.getElementById('result').innerText = `${winner} wins! 🎉`;
         document.getElementById('game-area').style.display = 'none';
-        document.getElementById('main-menu').style.display = 'block';  // Show main menu again
+        document.getElementById('result-section').style.display = 'block';  // Show result section
+        triggerConfetti();  // Trigger confetti effect
     }
 };
 
@@ -134,6 +135,33 @@ function updateSnailPosition(player, progress) {
         document.getElementById('snail2').style.left = (progress / totalQuestions) * trackWidth + 'px';
     }
 }
+
+
+// Function to trigger confetti effect
+function triggerConfetti() {
+    var duration = 0.5 * 1000;
+    var end = Date.now() + duration;
+
+    (function frame() {
+        confetti({
+            particleCount: 3,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 }
+        });
+        confetti({
+            particleCount: 3,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 }
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
+}
+
 
 // Initialize the page and set up the game area
 function init() {

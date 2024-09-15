@@ -8,7 +8,7 @@
         #snail-race {
             position: relative;
             width: 80%;
-            height: 150px;
+            height: 100px;
             background-color: #eee;
             margin: 20px auto;
         }
@@ -20,18 +20,36 @@
         #snail1 { top: 20px; }
         #snail2 { top: 70px; }
 
-        /* Flag positioning */
-        .goal-flag {
+        /* Flags for each track */
+        .flag {
             position: absolute;
-            font-size: 2rem; /* Make flag large */
-            right: 10px;
+            width: 30px;
+            height: 30px;
+            top: 20px;
+            right: 0;
         }
-        #flag1 { top: 20px; } /* Align with snail1 track */
-        #flag2 { top: 70px; } /* Align with snail2 track */
+        .flag2 {
+            top: 70px;
+        }
 
         /* Hide sections initially */
         #create-game-section, #join-game-section, #game-area {
             display: none;
+        }
+
+        /* Result section styling */
+        #result-section {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 2em;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -72,9 +90,9 @@
         <div id="snail-race">
             <img id="snail1" class="snail" src="snail1.png" alt="Snail 1">
             <img id="snail2" class="snail" src="snail2.png" alt="Snail 2">
-            <!-- Add goal flags -->
-            <div id="flag1" class="goal-flag">🏁</div>
-            <div id="flag2" class="goal-flag">🏁</div>
+            <!-- Goal flags for each snail -->
+            <img id="flag1" class="flag" src="flag.png" alt="Goal Flag">
+            <img id="flag2" class="flag flag2" src="flag.png" alt="Goal Flag">
         </div>
 
         <!-- Question area -->
@@ -82,10 +100,15 @@
             <p id="question"></p>
             <div id="answers"></div>
         </div>
+    </div>
 
-        <!-- Result area -->
+    <!-- Result Section -->
+    <div id="result-section">
         <p id="result"></p>
     </div>
+
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 
     <script src="script.js"></script>
 </body>
